@@ -1,0 +1,48 @@
+# Base de datos Profesor
+version: '3.9'
+
+services:
+
+  db-profesor:
+    container_name: db-profesor
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=profesores
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5431:5431
+    expose:
+      - 5431
+    command: -p 5431
+
+##base de datos alumnos
+  db-alumnos:
+    container_name: db-alumnos
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=alumnos
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    command: -p 5432
+
+  ##base de datos inscripcion
+  db-inscripciones:
+    container_name: db-inscripciones
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=inscripciones
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5433:5433
+    expose:
+      - 5433
+    command: -p 5433
