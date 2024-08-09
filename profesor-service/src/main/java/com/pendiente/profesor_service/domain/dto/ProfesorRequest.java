@@ -1,6 +1,6 @@
-package com.pendiente.profesor_service.dto;
+package com.pendiente.profesor_service.domain.dto;
 
-import com.pendiente.profesor_service.domain.ProfesorEntity;
+import com.pendiente.profesor_service.domain.entity.ProfesorEntity;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
@@ -14,13 +14,12 @@ import java.util.Date;
 @Value
 @Data
 @Builder
-public class ProfesorDTO implements Serializable {
+public class ProfesorRequest{
     String nombre;
     String dni;
     String telefono;
     String email;
     String direccion;
-    String numeroDomicilio;
     String localidad;
     Date fechaNacimiento;
 }

@@ -1,4 +1,4 @@
-package com.pendiente.profesor_service.domain;
+package com.pendiente.profesor_service.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,8 +24,6 @@ public class ProfesorEntity {
     private String telefono;
     private String email;
     private String direccion;
-    @Column(name = "numeracion_domicilio")
-    private String numeroDomicilio;
     private String localidad;
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)

@@ -46,3 +46,18 @@ services:
     expose:
       - 5433
     command: -p 5433
+
+    ##base de datos materia
+  db-materias:
+      container_name: db-materias
+      image: postgres
+      restart: unless-stopped
+      environment:
+        - POSTGRES_DB=materias
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      ports:
+        - 5434:5434
+      expose:
+        - 5434
+      command: -p 5434

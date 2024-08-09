@@ -16,6 +16,7 @@
         <module>profesor-service</module>
         <module>alumno-service</module>
         <module>inscripcion-service</module>
+        <module>materia-service</module>
     </modules>
 
     <properties>

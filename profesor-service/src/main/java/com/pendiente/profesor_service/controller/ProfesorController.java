@@ -1,6 +1,6 @@
 package com.pendiente.profesor_service.controller;
 
-import com.pendiente.profesor_service.dto.ProfesorDTO;
+import com.pendiente.profesor_service.domain.dto.ProfesorRequest;
 import com.pendiente.profesor_service.service.ProfesorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,13 +15,28 @@ public class ProfesorController {
     private final ProfesorService service;
 
     @PostMapping("/save")
-    public ResponseEntity<?> crearProfesor(@RequestBody ProfesorDTO profesorDTO) {
-        return new ResponseEntity<>(service.guardarProfesor(profesorDTO), HttpStatus.CREATED);
+    public ResponseEntity<?> crearProfesor(@RequestBody ProfesorRequest profesorRequest) {
+        return new ResponseEntity<>(service.guardarProfesor(profesorRequest), HttpStatus.CREATED);
     }
 
     @GetMapping()
     public ResponseEntity<?> buscarProfesorPorDni(@RequestParam String dni){
         return new ResponseEntity<>(service.buscarProfesorPorDNI(dni), HttpStatus.OK);
+    }
+//TODO: IMPLEMENTAR CONSULTA DINAMICA
+    @PatchMapping()
+    public ResponseEntity<?> actualizarProfesor(@RequestBody ProfesorRequest profesorRequest) {
+        return new ResponseEntity<>(service.editarProfesor(profesorRequest), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> buscarTodosLosProfesores(){
+        return new ResponseEntity<>(service.getAllProfesor(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarProfesor(@PathVariable Long id){
+        return new ResponseEntity<>(service.eliminarProfesor(id), HttpStatus.OK);
     }
 
 }
