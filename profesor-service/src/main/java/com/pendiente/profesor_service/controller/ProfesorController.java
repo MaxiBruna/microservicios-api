@@ -24,9 +24,9 @@ public class ProfesorController {
         return new ResponseEntity<>(service.buscarProfesorPorDNI(dni), HttpStatus.OK);
     }
 //TODO: IMPLEMENTAR CONSULTA DINAMICA
-    @PatchMapping()
-    public ResponseEntity<?> actualizarProfesor(@RequestBody ProfesorRequest profesorRequest) {
-        return new ResponseEntity<>(service.editarProfesor(profesorRequest), HttpStatus.ACCEPTED);
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> actualizarProfesor(@PathVariable Long id, @RequestBody ProfesorRequest profesorRequest) {
+        return new ResponseEntity<>(service.editarProfesor(profesorRequest , id), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/all")

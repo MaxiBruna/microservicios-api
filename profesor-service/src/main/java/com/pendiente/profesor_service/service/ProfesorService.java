@@ -45,8 +45,8 @@ public class ProfesorService {
                 .collect(Collectors.toList());
     }
 
-    public ProfesorResponse editarProfesor(ProfesorRequest profesor){
-        if (!repository.existsByDni(profesor.getDni())){
+    public ProfesorResponse editarProfesor(ProfesorRequest profesor, Long id){
+        if (!repository.existsById(id)){
             throw new RuntimeException("Profesor no existe");
         }
         ProfesorEntity p = repository.getProfesorEntitiesByDni(profesor.getDni()).get();
