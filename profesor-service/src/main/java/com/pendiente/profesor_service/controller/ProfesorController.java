@@ -1,6 +1,7 @@
 package com.pendiente.profesor_service.controller;
 
 import com.pendiente.profesor_service.domain.dto.ProfesorRequest;
+import com.pendiente.profesor_service.domain.dto.ProfesorResponse;
 import com.pendiente.profesor_service.service.ProfesorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,11 +24,16 @@ public class ProfesorController {
     public ResponseEntity<?> buscarProfesorPorDni(@RequestParam String dni){
         return new ResponseEntity<>(service.buscarProfesorPorDNI(dni), HttpStatus.OK);
     }
+    @GetMapping("/profesorPorId")
+    public ProfesorResponse getBuscarProfesorPorDni(@RequestParam Long id){
+        return service.buscarProfesorPorID(id);
+    }
 //TODO: IMPLEMENTAR CONSULTA DINAMICA
     @PatchMapping("/{id}")
     public ResponseEntity<?> actualizarProfesor(@PathVariable Long id, @RequestBody ProfesorRequest profesorRequest) {
         return new ResponseEntity<>(service.editarProfesor(profesorRequest , id), HttpStatus.ACCEPTED);
     }
+    //TODO: IMPLEMENTAR BOOLEAN EXIST PARA API MATERIA ("/{id}/existsProfesorById")
 
     @GetMapping("/all")
     public ResponseEntity<?> buscarTodosLosProfesores(){

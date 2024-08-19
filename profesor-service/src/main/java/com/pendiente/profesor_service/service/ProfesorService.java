@@ -29,6 +29,14 @@ public class ProfesorService {
         return entityToResponse(profesorEntity);
     }
 
+    public ProfesorResponse buscarProfesorPorID(Long id){
+        Optional<ProfesorEntity> optionalProfesor = repository.findById(id);
+        if(optionalProfesor.isPresent()){
+            return entityToResponse(optionalProfesor.get());
+        }
+        throw new RuntimeException("Profesor no encontrado");
+    }
+
     public ProfesorResponse eliminarProfesor(Long id){
         if(!repository.existsById(id)){
             throw new RuntimeException("Profesor no encontrado");
