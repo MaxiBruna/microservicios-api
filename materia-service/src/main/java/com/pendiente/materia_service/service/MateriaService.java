@@ -46,7 +46,9 @@ public class MateriaService {
             throw new RuntimeException("La materia a la que se quiere asignar un profesor no existe por id");
         }
         materiaFecade.verificarExistenciaProfesor(request.getIdProfesor());
-        return repository.findById(id).orElseThrow();
+        Materia materia = repository.findById(id).orElseThrow();
+        materia.getProfesoresIds().add(request.getIdProfesor());
+        return repository.save(materia);
     }
     public List<Materia> obtenerTodasLasMaterias() {
         return repository.findAll();
@@ -71,5 +73,9 @@ public class MateriaService {
             throw new RuntimeException("No se puede eliminar una materia que tiene profesores asociados");
         }
         repository.deleteById(materiaId);
+    }
+
+    public Materia buscarMatetriaPorId(UUID id){
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("La materia no existe"));
     }
 }

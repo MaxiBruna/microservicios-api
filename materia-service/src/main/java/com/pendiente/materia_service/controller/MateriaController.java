@@ -22,9 +22,7 @@ public class MateriaController {
 
     @PostMapping("/")
     public ResponseEntity<?> crearMateria(@RequestBody MateriaDto materiaDto) {
-
         return new ResponseEntity<>(service.guardarMateria(materiaDto),HttpStatus.CREATED);
-
     }
 
     @PostMapping("/asignarProfesor")
@@ -47,9 +45,14 @@ public class MateriaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> getMateriaById(@PathVariable UUID id){
+    public ResponseEntity<?> deleteMateriaById(@PathVariable UUID id){
         service.eliminarMateria(id);
         log.info("Eliminando materia");
         return new ResponseEntity<>("Materia eliminada", HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getMateriaById(@PathVariable UUID id){
+        return new ResponseEntity<>(service.buscarMatetriaPorId(id), HttpStatus.OK);
     }
 }

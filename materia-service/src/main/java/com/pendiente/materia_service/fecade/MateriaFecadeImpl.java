@@ -1,14 +1,12 @@
 package com.pendiente.materia_service.fecade;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientException;
 
 
 @Component
@@ -23,7 +21,7 @@ public class MateriaFecadeImpl implements IMateriaFecade{
         log.warn("Llamando al microservicoo profesores");
         String profesor = this.webClient.build()
                  .get()
-                 .uri("http://localhost:8083/api/profesores/profesorPorId?id=" + id)
+                 .uri("http://localhost:8083/api/profesores/profesorPorId/{id}" , id)
                  .retrieve()
                  .bodyToMono(String.class)
                  .block();
@@ -34,7 +32,6 @@ public class MateriaFecadeImpl implements IMateriaFecade{
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode node = objectMapper.readTree(profesor);
             Long profesorId = node.path("id").asLong();
-            log.info("Retornando respuesta " );
             return  profesorId;
         }catch(JsonProcessingException e){
             throw new RuntimeException("Error al procesar la respuesta del microservicio de profesores", e);

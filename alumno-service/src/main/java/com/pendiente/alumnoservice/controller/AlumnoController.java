@@ -18,7 +18,6 @@ public class AlumnoController {
     public ResponseEntity<?> crearAlumno(@RequestBody AlumnoRequest alumnoRequest) {
         return new ResponseEntity<>(service.saveAlumno(alumnoRequest), HttpStatus.CREATED);
     }
-    //TODO: IMPLEMENTAR CONSULTA DINAMICA
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarAlumnoId(@PathVariable Long id){
         return new ResponseEntity<>(service.getAlumnoById(id), HttpStatus.OK);

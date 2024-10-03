@@ -24,8 +24,8 @@ public class ProfesorController {
     public ResponseEntity<?> buscarProfesorPorDni(@RequestParam String dni){
         return new ResponseEntity<>(service.buscarProfesorPorDNI(dni), HttpStatus.OK);
     }
-    @GetMapping("/profesorPorId")
-    public ProfesorResponse getBuscarProfesorPorDni(@RequestParam Long id){
+    @GetMapping("/profesorPorId/{id}")
+    public ProfesorResponse getBuscarProfesorPorDni(@PathVariable Long id){
         return service.buscarProfesorPorID(id);
     }
 //TODO: IMPLEMENTAR CONSULTA DINAMICA
